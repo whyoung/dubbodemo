@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--dubbo配置-->
+
+    <!--应用-->
+    <dubbo:application name="hello-world-app-provider"/>
+    <!--zookeeper服务-->
+    <dubbo:registry address="zookeeper://192.168.191.128:2181" />
+    <!--dubbo服务-->
+    <dubbo:protocol name="dubbo" port="20880" />
+    <dubbo:service interface="com.ProviderService" ref="providerService" />
+
+    <!-- spring bean配置 -->
+    <bean id="providerService" class="com.ProviderServiceImpl"/>
+</beans>
